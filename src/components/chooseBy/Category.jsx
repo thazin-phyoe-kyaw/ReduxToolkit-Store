@@ -4,13 +4,6 @@ import { useState } from "react";
 // import { toggleCategory } from "../../../../redux/orebiSlice";
 
 const Category = () => {
-  const [showSubCatOne, setShowSubCatOne] = useState(false);
-
-  //   const checkedCategorys = useSelector(
-  //     (state) => state.orebiReducer.checkedCategorys
-  //   );
-  //   const dispatch = useDispatch();
-
   const category = [
     {
       _id: 9006,

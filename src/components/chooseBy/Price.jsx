@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Price = () => {
-  return <div>Price</div>;
+  const [priceRange, setPriceRange] = useState([0, 100]);
+
+  const handlePriceChange = (e) => {
+    setPriceRange([parseInt(e.target.value), priceRange[1]]);
+  };
+
+  return (
+    <div>
+      <label
+        htmlFor="price-range"
+        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >
+        Price Range
+      </label>
+      <div className="flex justify-between">
+        <span>${priceRange[0]}</span>
+        <span>${priceRange[1]}</span>
+      </div>
+      <input
+        id="price-range"
+        type="range"
+        min="0"
+        max="100"
+        value={priceRange[0]}
+        onChange={handlePriceChange}
+        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+      />
+    </div>
+  );
 };
 
 export default Price;
