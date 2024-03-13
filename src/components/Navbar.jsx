@@ -1,9 +1,15 @@
-import { Search, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useDispatch } from "react-redux";
-
+import SearchItem from "./Search";
 import { openSidebar } from "../features/sidebar/sidebarSlice";
+import { useState } from "react";
 export default function Navbar() {
   const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className="w-full">
@@ -13,7 +19,8 @@ export default function Navbar() {
             <img src="/akira-logo.png" alt="logo"></img>
           </div>
           <div className="flex space-x-4 items-center">
-            <Search />
+            <SearchItem onChange={handleSearchChange} />
+
             <ShoppingCart onClick={() => dispatch(openSidebar())} />
           </div>
         </div>
