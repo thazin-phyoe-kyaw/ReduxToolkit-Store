@@ -1,15 +1,22 @@
-import { Expand, Maximize, Maximize2, ShoppingBasket } from "lucide-react";
+import { Expand, Maximize, ShoppingBasket } from "lucide-react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCart } from "../features/cart/cartSlice";
 
 const Product = (product) => {
+  const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
+
   return (
     <div className="flex flex-col">
       <div className="w-full min-h-[300px] mb-4 overflow-hidden group relative transition border border-slate-100  ">
         <div className="w-full h-full flex justify-center items-center">
           <img
             className="max-w-[140px] group-hover:scale-110 transition duration-300"
-            src={product.product.image}
-            alt={product.product.title}
+            src={product?.product?.image}
+            alt={product?.product?.title}
           />
         </div>
         <div className="absolute top-2 left-0 bg-lime-400 px-2 ">
@@ -24,7 +31,10 @@ const Product = (product) => {
           </Link>
         </div>
         <div className="absolute top-11 right-0 rounded-full w-8 flex justify-center items-center h-8 bg-gray-700 px-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:right-6 ">
-          <button className="text-white text-sm">
+          <button
+            className="text-white text-sm"
+            onClick={() => handleAddToCart(product.product)}
+          >
             <ShoppingBasket size="16" />
           </button>
         </div>

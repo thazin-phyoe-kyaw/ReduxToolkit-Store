@@ -1,14 +1,7 @@
-// import { useState } from "react";
-// import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-// import Pagination from "../../components/pageProps/shopPage/Pagination";
+import FilterProduct from "./FilterProduct";
 import ProductBanner from "./ProductBanner";
 import ShopSideNav from "./ShopSidebar";
 const Shop = () => {
-  // const [itemsPerPage, setItemsPerPage] = useState(48);
-  // const itemsPerPageFromBanner = (itemsPerPage) => {
-  //   setItemsPerPage(itemsPerPage);
-  // };
-
   return (
     <div className="container mx-auto py-4">
       <div className="w-full h-full flex pb-20 gap-10">
@@ -17,6 +10,7 @@ const Shop = () => {
           <ShopSideNav />
         </div>
         <div className="w-full mdl:w-[80%] lgl:w-[75%] h-full flex flex-col gap-10">
+          <FilterProduct />
           <ProductBanner />
         </div>
       </div>
