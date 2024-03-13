@@ -5,7 +5,6 @@ const Shop = () => {
   return (
     <div className="container mx-auto py-4">
       <div className="w-full h-full flex pb-20 gap-10">
-        {/* <div className="w-[20%] lgl:w-[25%] hidden mdl:inline-flex h-full"> */}
         <div className="w-[20%] lg:w-[25%] hidden md:inline-flex h-full">
           <ShopSideNav />
         </div>

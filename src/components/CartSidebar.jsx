@@ -37,7 +37,7 @@ const CartSidebar = () => {
       <div className="flex justify-between items-center mb-4">
         <div>
           Total:
-          <span className="text-red-700 font-bold">
+          <span className="text-red-700 font-bold ">
             ${cart.cartTotalAmount}
           </span>
         </div>

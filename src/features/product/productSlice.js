@@ -1,9 +1,14 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios, { Axios } from "axios";
 
 const initialState = {
+  allItems: [], // Add this to store all original items
   items: [],
   status: null,
+  currentPage: 1,
+  pageSize: 10,
+  sortOrder: "asc",
+  selectedCategory: null,
 };
 
 export const fetchProducts = createAsyncThunk(
@@ -18,10 +23,38 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-const productsSlice = createSlice({
+const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+    setPageSize: (state, action) => {
+      state.pageSize = action.payload;
+    },
+    sortByPrice: (state, action) => {
+      state.sortOrder = action.payload;
+      state.items = [...state.items].sort((a, b) => {
+        if (action.payload === "asc") {
+          return a.price - b.price;
+        } else {
+          return b.price - a.price;
+        }
+      });
+    },
+
+    setCategoryFilter(state, action) {
+      state.selectedCategory = action.payload;
+      state.items = state.allItems.filter(
+        (item) => item.category === action.payload
+      );
+    },
+
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state, action) => {
@@ -29,6 +62,7 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.items = action.payload;
+        state.allItems = action.payload; // Update allItems with fetched items
         state.status = "success";
       })
       .addCase(fetchProducts.rejected, (state, action) => {
@@ -36,5 +70,5 @@ const productsSlice = createSlice({
       });
   },
 });
-
-export default productsSlice.reducer;
+export const { sortByPrice, setCategoryFilter } = productSlice.actions;
+export default productSlice.reducer;
