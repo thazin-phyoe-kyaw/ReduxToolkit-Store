@@ -11,7 +11,7 @@ const Price = () => {
     <div>
       <label
         htmlFor="price-range"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        className="block  text-gray-900 dark:text-white font-extrabold lg:text-xl  mb-4"
       >
         Price Range
       </label>

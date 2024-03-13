@@ -16,19 +16,23 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center pt-20 gap-10 container mx-auto">
+    <div className="flex px-10 flex-col md:flex-row items-center pt-20 gap-10 container mx-auto">
       <div>
         <img
           src={product.image}
           alt={product.title}
-          className="max-w-[400px]"
+          className="max-w-[200px] md:max-w-[400px]"
         />
       </div>
-      <div className="w-[500px]">
+      <div className="w-[300px] md:w-[500px]">
         <h1 className="font-extrabold text-3xl mb-5">{product.title}</h1>
         <p className="mb-3">Price: ${product.price}</p>
-        <p className="mb-3">Description: {product.description}</p>
-        <p className="mb-3">Category: {product.category}</p>
+        <p className="mb-3 text-gray-600 text-sm">
+          Description: {product.description}
+        </p>
+        <p className="mb-3 text-gray-600 text-sm">
+          Category: {product.category}
+        </p>
         <div className="flex  text-sm justify-between">
           <div className="flex items-center space-x-4">
             <button className="bg-slate-300 p-1 cursor-pointer">
@@ -39,7 +43,7 @@ const ProductDetail = () => {
               <Minus size="16" />
             </button>
           </div>
-          <div className="text-red-700 font-bold text-lg">S100</div>
+          <div className="text-red-700 font-bold text-lg">$100</div>
         </div>
       </div>
     </div>
