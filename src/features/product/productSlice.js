@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios, { Axios } from "axios";
+import axios from "axios";
 
 const initialState = {
-  allItems: [], // Add this to store all original items
+  allItems: [],
   items: [],
   status: null,
   currentPage: 1,
@@ -51,8 +51,16 @@ const productSlice = createSlice({
       );
     },
 
-    setSearchTerm: (state, action) => {
+    setSearchTerm(state, action) {
       state.searchTerm = action.payload;
+      state.items = state.items.filter((item) => {
+        return (
+          item.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+          item.description
+            .toLowerCase()
+            .includes(state.searchTerm.toLowerCase())
+        );
+      });
     },
   },
   extraReducers: (builder) => {
@@ -70,5 +78,6 @@ const productSlice = createSlice({
       });
   },
 });
-export const { sortByPrice, setCategoryFilter } = productSlice.actions;
+export const { sortByPrice, setCategoryFilter, setSearchTerm } =
+  productSlice.actions;
 export default productSlice.reducer;
