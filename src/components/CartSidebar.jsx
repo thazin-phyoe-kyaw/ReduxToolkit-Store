@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CartItem from "./CartItem";
 // import { products } from "../data/data";
 const CartSidebar = () => {
-  const [open, setIsOpen] = useState(true);
+  const [open, setIsOpen] = useState(false);
   const products = [
     {
       id: 8,
