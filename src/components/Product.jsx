@@ -2,7 +2,6 @@ import { Expand, Maximize, Maximize2, ShoppingBasket } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Product = (product) => {
-  console.log(product.product);
   return (
     <div className="flex flex-col">
       <div className="w-full min-h-[300px] mb-4 overflow-hidden group relative transition border border-slate-100  ">

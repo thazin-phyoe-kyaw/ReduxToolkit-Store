@@ -1,6 +1,10 @@
-import { Search, ShoppingCart, UserRound } from "lucide-react";
+import { Search, ShoppingCart } from "lucide-react";
+import { useDispatch } from "react-redux";
 
+import { openSidebar } from "../features/sidebar/sidebarSlice";
 export default function Navbar() {
+  const dispatch = useDispatch();
+
   return (
     <div className="w-full">
       <div className="container mx-auto">
@@ -10,8 +14,7 @@ export default function Navbar() {
           </div>
           <div className="flex space-x-4 items-center">
             <Search />
-            <ShoppingCart />
-            <UserRound />
+            <ShoppingCart onClick={() => dispatch(openSidebar())} />
           </div>
         </div>
       </div>

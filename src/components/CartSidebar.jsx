@@ -1,9 +1,13 @@
 import { Trash, X } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 import CartItem from "./CartItem";
-// import { products } from "../data/data";
+import { useDispatch, useSelector } from "react-redux";
+import { closeSidebar } from "../features/sidebar/sidebarSlice";
+
 const CartSidebar = () => {
-  const [open, setIsOpen] = useState(false);
+  const isOpen = useSelector((state) => state.sidebar.isOpen);
+  const dispatch = useDispatch();
+  console.log(isOpen, "dfjk");
   const products = [
     {
       id: 8,
@@ -45,11 +49,14 @@ const CartSidebar = () => {
       },
     },
   ];
-  return open ? (
+  return isOpen ? (
     <div className="right-0 h-full w-full bg-white fixed top-0 md:w-[30vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg-px-[5px]">
       <div className="flex items-center justify-between border-b py-3 ">
         <div className="font-semibold uppercase text-sm">YOUR CART (7)</div>
-        <div>
+        <div
+          onClick={() => dispatch(closeSidebar())}
+          className="cursor-pointer"
+        >
           <X />
         </div>
       </div>

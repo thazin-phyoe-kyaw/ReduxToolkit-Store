@@ -1,8 +1,11 @@
 import { X, Plus, Minus } from "lucide-react";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { closeSidebar } from "../features/sidebar/sidebarSlice";
 
 const CartItem = ({ item }) => {
+  const dispatch = useDispatch();
   return (
     <div className="flex">
       <div className="w-full flex min-h-[150px] items-center gap-x-4 ">
@@ -16,7 +19,10 @@ const CartItem = ({ item }) => {
                 <p className="text-sm text-gray-500">{item.title}</p>
               </Link>
             </div>
-            <div>
+            <div
+              onClick={() => dispatch(closeSidebar())}
+              className="cursor:pointer"
+            >
               <X size="16" />
             </div>
           </div>
