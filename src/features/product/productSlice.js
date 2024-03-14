@@ -5,10 +5,11 @@ const initialState = {
   allItems: [],
   items: [],
   status: null,
-  currentPage: 1,
-  pageSize: 10,
   sortOrder: "asc",
   selectedCategory: null,
+  currentPage: 1,
+  pageSize: 10,
+  totalPages: 0,
 };
 
 export const fetchProducts = createAsyncThunk(
@@ -27,12 +28,6 @@ const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setCurrentPage: (state, action) => {
-      state.currentPage = action.payload;
-    },
-    setPageSize: (state, action) => {
-      state.pageSize = action.payload;
-    },
     sortByPrice: (state, action) => {
       state.sortOrder = action.payload;
       state.items = [...state.items].sort((a, b) => {
@@ -62,6 +57,21 @@ const productSlice = createSlice({
         );
       });
     },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+      state.items = state.allItems.slice(
+        (state.currentPage - 1) * state.pageSize,
+        state.currentPage * state.pageSize
+      );
+    },
+    setPageSize: (state, action) => {
+      state.pageSize = action.payload;
+      state.totalPages = Math.ceil(state.allItems.length / state.pageSize);
+      state.items = state.allItems.slice(
+        (state.currentPage - 1) * state.pageSize,
+        state.currentPage * state.pageSize
+      );
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -70,7 +80,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.allItems = action.payload; // Update allItems with fetched items
+        state.allItems = action.payload;
         state.status = "success";
       })
       .addCase(fetchProducts.rejected, (state, action) => {
@@ -78,6 +88,11 @@ const productSlice = createSlice({
       });
   },
 });
-export const { sortByPrice, setCategoryFilter, setSearchTerm } =
-  productSlice.actions;
+export const {
+  sortByPrice,
+  setCategoryFilter,
+  setSearchTerm,
+  setCurrentPage,
+  setPageSize,
+} = productSlice.actions;
 export default productSlice.reducer;

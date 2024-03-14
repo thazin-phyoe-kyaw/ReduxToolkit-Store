@@ -1,11 +1,9 @@
-import { X, Plus, Minus } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { closeSidebar } from "../features/sidebar/sidebarSlice";
 import {
   addToCart,
-  clearCart,
   decreaseCart,
   removeFromCart,
 } from "../features/cart/cartSlice";
@@ -31,12 +29,12 @@ const CartItem = ({ item }) => {
           <div className="flex justify-between items-center">
             <div>
               <Link>
-                <p className="text-sm text-gray-500">{item.title}</p>
+                <p className="text-sm text-gray-500">{item?.title}</p>
               </Link>
             </div>
             <div
               onClick={() => dispatch(() => handleRemoveItem(item))}
-              className="cursor:pointer"
+              className="cursor-pointer"
             >
               <button className="bg-red-200 text-sm p-1 text-gray-600 cursor-pointer border-r-2">
                 Remove
@@ -51,7 +49,7 @@ const CartItem = ({ item }) => {
               >
                 <Plus size="16" />
               </button>
-              <div>{item.cartQuantity}</div>
+              <div>{item?.cartQuantity}</div>
               <button
                 className="bg-slate-300 p-1 cursor-pointer "
                 onClick={() => handleRemoveFromCart(item)}
@@ -61,7 +59,7 @@ const CartItem = ({ item }) => {
             </div>
 
             <div className="text-red-700 font-bold text-lg">
-              `${(item.price * item.cartQuantity).toFixed(2)}`
+              ${(item?.price * item?.cartQuantity).toFixed(2)}
             </div>
           </div>
         </div>

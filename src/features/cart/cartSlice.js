@@ -54,7 +54,7 @@ const cartSlice = createSlice({
         state.cartItems = nextCartItems;
 
         toast.error("Product removed from cart", {
-          position: "bottom-left",
+          position: "top-rights",
         });
       }
 

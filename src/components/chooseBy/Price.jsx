@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Price = () => {
-  const [priceRange, setPriceRange] = useState([0, 100]);
+  const [priceRange, setPriceRange] = useState([0, 2000]);
 
   const handlePriceChange = (e) => {
     setPriceRange([parseInt(e.target.value), priceRange[1]]);
@@ -23,7 +23,7 @@ const Price = () => {
         id="price-range"
         type="range"
         min="0"
-        max="100"
+        max="2000"
         value={priceRange[0]}
         onChange={handlePriceChange}
         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   fetchProducts,
   setCategoryFilter,
@@ -21,9 +21,6 @@ const FilterProduct = () => {
     dispatch(sortByPrice(selectedSortOrder));
   };
 
-  // const { items: products, selectedCategory } = useSelector(
-  //   (state) => state.product
-  // );
   console.log(selectedCategory);
   const handleFilterChange = (e) => {
     const selectedCategory = e.target.value;
@@ -32,20 +29,36 @@ const FilterProduct = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="sort">Sort by Price:</label>
-      <select id="sort" value={sortOrder} onChange={handleSortChange}>
-        <option value="asc">Lowest to Highest</option>
-        <option value="desc">Highest to Lowest</option>
-      </select>
-      <label htmlFor="filter">Filter by Category:</label>
-      <select id="filter" onChange={handleFilterChange}>
-        <option value="all">All Categories</option>
-        <option value="men's clothing">Men's Clothing</option>
-        <option value="women's clothing">Women's Clothing</option>
-        <option value="jewelery">Jewelry</option>
-        <option value="electronics">Electronics</option>
-      </select>
+    <div className="flex flex-end items-center text-sm text-gray-600 gap-6">
+      <div>
+        <label htmlFor="sort" className="text-sm ">
+          Sort by Price:
+        </label>
+        <select
+          id="sort"
+          value={sortOrder}
+          onChange={handleSortChange}
+          className="px-2 py-1 border border-gray-300 rounded-md"
+        >
+          <option value="asc">Lowest to Highest</option>
+          <option value="desc">Highest to Lowest</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="filter" className="text-sm text-gray-600">
+          Filter by Category:
+        </label>
+        <select
+          id="filter"
+          onChange={handleFilterChange}
+          className="px-2 py-1 border border-gray-300 rounded-md "
+        >
+          <option value="men's clothing">Men's Clothing</option>
+          <option value="women's clothing">Women's Clothing</option>
+          <option value="jewelery">Jewelry</option>
+          <option value="electronics">Electronics</option>
+        </select>
+      </div>
     </div>
   );
 };

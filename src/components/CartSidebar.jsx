@@ -20,7 +20,8 @@ const CartSidebar = () => {
     <div className="right-0 h-full w-full overflow-y-auto bg-white fixed top-0 md:w-[30vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg-px-[5px]">
       <div className="flex items-center justify-between border-b py-3 ">
         <div className="font-semibold uppercase text-sm">
-          YOUR CART {cart.cartItems.length}
+          <span className="text-red-600 mr-4 text-lg">YOUR CART</span>
+          <span className="text-lg"> {cart.cartItems.length}</span>
         </div>
         <div
           onClick={() => dispatch(closeSidebar())}

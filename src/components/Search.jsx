@@ -13,7 +13,7 @@ const SearchItem = () => {
   return (
     <div className="flex items-center bg-white rounded-lg shadow-sm">
       <div className="md:p-0 md:ml-2">
-        <Search className="w-4 h-4 md:w-8 md:h-8" />
+        <Search className="w-4 h-4 md:w-6 md:h-6" size="16" />
       </div>
       <input
         type="text"
