@@ -22,15 +22,8 @@ const Product = (product) => {
         <div className="absolute top-2 left-0 bg-lime-400 px-2 ">
           <button className="text-white text-sm">New</button>
         </div>
-        <div className="absolute top-2 right-0 rounded-full bg-gray-700 w-8 flex justify-center items-center h-8 px-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:right-6 ">
-          {/* <button className="text-white text-sm">New</button> */}
-          <Link to={`/product/${product.product.id}`}>
-            <button className="text-white text-sm rounded-full block">
-              <Maximize size="16" />
-            </button>
-          </Link>
-        </div>
-        <div className="absolute top-11 right-0 rounded-full w-8 flex justify-center items-center h-8 bg-gray-700 px-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:right-6 ">
+
+        <div className="absolute top-2 right-0 rounded-full w-8 flex justify-center items-center h-8 bg-gray-700 px-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:right-6 ">
           <button
             className="text-white text-sm"
             onClick={() => handleAddToCart(product.product)}
@@ -40,7 +33,7 @@ const Product = (product) => {
         </div>
       </div>
       <div>
-        <Link to={`/product/${product.product.id}`}>
+        <Link>
           <h2 className="font-semibold text-center mb-2 ">
             {product.product.title}
           </h2>
